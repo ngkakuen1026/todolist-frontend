@@ -7,6 +7,12 @@ const ChangePw = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [error, setError] = useState("");
+  const [userInput, setUserInput] = useState({
+    oldPassword: "",
+    newPassword: "",
+    confirmPassword: "",
+  });
+  const [formError, setFormError] = useState("");
 
   useEffect(() => {
     const fetchUserInfo = async () => {
@@ -31,7 +37,6 @@ const ChangePw = () => {
         setError(err.response?.data?.message || "Failed to fetch user profile");
       }
     };
-
     fetchUserInfo();
   }, []);
 
@@ -53,8 +58,67 @@ const ChangePw = () => {
     return `${formattedDate} at ${formattedTime}`;
   };
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserInput({
+      ...userInput,
+      [name]: value,
+    });
+  };
+
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+
+    if (userInput.newPassword !== userInput.confirmPassword) {
+      setFormError("New password and confirmation password do not match.");
+      return;
+    }
+
+    try {
+      const token = localStorage.getItem("authToken");
+      if (!token) throw new Error("No authentication token found");
+
+      // Make API call to update the password
+      const response = await axios.put(
+        `${usersAPI.url}/${user.user_id}/changepassword`,
+        {
+          oldPassword: userInput.oldPassword,
+          newPassword: userInput.newPassword,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      console.log("Password updated successfully:", response.data);
+      alert("Password updated successfully!");
+      navigate("/profile"); // Navigate back to the profile page after success
+    } catch (err) {
+      console.error(
+        "Error updating password:",
+        err.response?.data?.message || err.message
+      );
+      setFormError(err.response?.data?.message || "Failed to update password.");
+    }
+  };
+
   if (error) {
-    return <p className="text-red-500">Error: {error}</p>;
+    return (
+      <>
+        <h1 className="text-red-500">Error: {error}</h1>;<p></p>
+        <p onClick={() => navigate("/login")}>Login to start again</p>
+      </>
+    );
+  }
+
+  if (formError) {
+    return (
+      <>
+        <h1 className="text-red-500">Error: {formError}</h1>;<p></p>
+      </>
+    );
   }
 
   if (!user) {
@@ -97,16 +161,26 @@ const ChangePw = () => {
           </div>
         </div>
 
-        <form className="border-1 border-gray-400 p-8 rounded-xl">
+        <form
+          className="border-1 border-gray-400 p-8 rounded-xl"
+          onSubmit={handleUpdate}
+        >
           <div className="flex flex-col space-y-4">
             <div>
-              <label htmlFor="original-password" className="block font-bold mb-1">
+              <label
+                htmlFor="original-password"
+                className="block font-bold mb-1"
+              >
                 Original Password
               </label>
               <input
-                type="text"
-                id="first-name"
+                type="password"
+                id="oldPassword"
+                name="oldPassword"
+                value={userInput.oldPassword}
+                onChange={handleChange}
                 className="w-1/2 px-4 py-2 border border-gray-400 rounded-lg focus:outline-none focus:ring-1"
+                required
               />
             </div>
             <div>
@@ -114,18 +188,28 @@ const ChangePw = () => {
                 New Password
               </label>
               <input
-                type="text"
-                id="last-name"
+                type="password"
+                id="newPassword"
+                name="newPassword"
+                value={userInput.newPassword}
+                onChange={handleChange}
                 className="w-1/2 px-4 py-2 border border-gray-400 rounded-lg focus:outline-none focus:ring-1"
+                required
               />
             </div>
             <div>
-              <label htmlFor="confirm-password" className="block font-bold mb-1">
+              <label
+                htmlFor="confirm-password"
+                className="block font-bold mb-1"
+              >
                 Confirm Password
               </label>
               <input
-                type="email"
-                id="email"
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                value={userInput.confirmPassword}
+                onChange={handleChange}
                 className="w-1/2 px-4 py-2 border border-gray-400 rounded-lg focus:outline-none focus:ring-1"
               />
             </div>
@@ -143,7 +227,7 @@ const ChangePw = () => {
               onClick={() => navigate("/profile")}
               className="bg-red-400 text-white px-4 py-2 rounded-lg hover:bg-red-600"
             >
-                Cancel
+              Cancel
             </button>
           </div>
         </form>

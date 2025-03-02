@@ -7,7 +7,7 @@ import {
   faGoogle,
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
-import { InputField } from "../reusable/InputField";
+import { AuthInputField } from "../reusable/AuthInputField";
 import { authAPI } from "../common/http-api";
 import axios from "axios";
 
@@ -80,7 +80,7 @@ const Login = () => {
           {/* Username input */}
           <div className="mb-6 justify-center">
             <div className="relative">
-              <InputField
+              <AuthInputField
                 type="text"
                 name="username"
                 placeholder="Enter your Username"
@@ -93,7 +93,7 @@ const Login = () => {
           {/* Password input */}
           <div className="mb-6 justify-center">
             <div className="relative">
-              <InputField
+              <AuthInputField
                 type={showPassword ? "text" : "password"}
                 name="password"
                 placeholder="Enter your password"

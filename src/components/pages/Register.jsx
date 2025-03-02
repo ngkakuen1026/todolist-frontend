@@ -3,7 +3,7 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash, faUser } from "@fortawesome/free-solid-svg-icons";
 import { authAPI } from "../common/http-api";
-import { InputField } from "../reusable/InputField";
+import { AuthInputField } from "../reusable/AuthInputField";
 
 const Register = () => {
   const [userInput, setUserInput] = useState({
@@ -138,7 +138,7 @@ const Register = () => {
           <div className="flex justify-center gap-x-5">
             <div className="w-1/2">
               <div className="mb-4">
-                <InputField
+                <AuthInputField
                   type="text"
                   name="first_name"
                   placeholder="Enter your first name"
@@ -149,7 +149,7 @@ const Register = () => {
             </div>
             <div className="w-1/2">
               <div className="mb-4">
-                <InputField
+                <AuthInputField
                   type="text"
                   name="last_name"
                   placeholder="Enter your last name"
@@ -163,7 +163,7 @@ const Register = () => {
           <div className="flex justify-center gap-x-5">
             <div className="w-1/3">
               <div className="mb-4">
-                <InputField
+                <AuthInputField
                   type="text"
                   name="username"
                   placeholder="Enter your Username"
@@ -174,7 +174,7 @@ const Register = () => {
             </div>
             <div className="w-1/3">
               <div className="mb-4">
-                <InputField
+                <AuthInputField
                   type="text"
                   name="phone"
                   placeholder="Enter your phone number"
@@ -201,7 +201,7 @@ const Register = () => {
           </div>
 
           <div className="mb-4 flex justify-center">
-            <InputField
+            <AuthInputField
               type="email"
               name="email"
               placeholder="Enter your email"
@@ -212,7 +212,7 @@ const Register = () => {
 
           <div className="mb-6 justify-center">
             <div className="relative">
-              <InputField
+              <AuthInputField
                 type={showPassword ? "text" : "password"}
                 name="password"
                 placeholder="Enter your password"

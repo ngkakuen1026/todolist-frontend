@@ -7,6 +7,15 @@ const Profile = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [error, setError] = useState("");
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [uploadMessage, setUploadMessage] = useState("");
+  const [userInput, setUserInput] = useState({
+    first_name: "",
+    last_name: "",
+    email: "",
+    gender: "",
+    phone: "",
+  });
 
   useEffect(() => {
     const fetchUserInfo = async () => {
@@ -23,6 +32,14 @@ const Profile = () => {
 
         console.log("User Data Response:", response.data.user);
         setUser(response.data.user);
+
+        setUserInput({
+          first_name: response.data.user.first_name || "",
+          last_name: response.data.user.last_name || "",
+          email: response.data.user.email || "",
+          gender: response.data.user.gender || "",
+          phone: response.data.user.phone || "",
+        });
       } catch (err) {
         console.error(
           "Error fetching user profile:",
@@ -35,8 +52,8 @@ const Profile = () => {
     fetchUserInfo();
   }, []);
 
-  const formatDate = (String) => {
-    const date = new Date(String);
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
 
     const formattedDate = date.toLocaleDateString("en-US", {
       year: "numeric",
@@ -53,8 +70,86 @@ const Profile = () => {
     return `${formattedDate} at ${formattedTime}`;
   };
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserInput({
+      ...userInput,
+      [name]: value,
+    });
+  };
+
+  const handleImageChange = async (e) => {
+    const file = e.target.files[0];
+    setSelectedImage(file);
+
+    if (!file) {
+      setUploadMessage("Please select an image to upload.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("profile_image", file);
+
+    try {
+      const token = localStorage.getItem("authToken");
+
+      const response = await axios.post(
+        `${usersAPI.url}/${user.user_id}/upload`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      setUploadMessage("Profile image uploaded successfully!");
+      setUser({ ...user, profile_image: URL.createObjectURL(file) }); // Update the displayed image
+      console.log("Upload response:", response.data);
+    } catch (error) {
+      console.error("Image upload error:", error.response || error.message);
+      setUploadMessage("Failed to upload image. Please try again.");
+    }
+  };
+
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+
+    try {
+      const token = localStorage.getItem("authToken");
+      if (!token) throw new Error("No authentication token found");
+
+      const response = await axios.put(
+        `${usersAPI.url}/${user.user_id}`,
+        userInput,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      console.log("Updated user data:", response.data);
+
+      setUser(response.data.updatedUser);
+      alert("Profile updated successfully!");
+    } catch (err) {
+      console.error(
+        "Error updating user profile:",
+        err.response?.data?.message || err.message
+      );
+      alert(err.response?.data?.message || "Failed to update profile.");
+    }
+  };
+
   if (error) {
-    return <p className="text-red-500">Error: {error}</p>;
+    return (
+      <>
+        <h1 className="text-red-500">Error: {error}</h1>
+        <p onClick={() => navigate("/login")}>Login to start again</p>
+      </>
+    );
   }
 
   if (!user) {
@@ -62,7 +157,7 @@ const Profile = () => {
   }
 
   return (
-    <div className="">
+    <div>
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-4xl font-bold">Account Information</h1>
         <Link to="/dashboard" className="text-lg font-semibold hover:underline">
@@ -71,15 +166,35 @@ const Profile = () => {
       </div>
 
       <div className="bg-white p-6 rounded-lg">
-        <div className="flex items-center space-x-6 mb-6">
-          <img
-            src={
-              user?.profile_image ||
-              "https://static.vecteezy.com/system/resources/thumbnails/000/439/863/small/Basic_Ui__28186_29.jpg"
-            }
-            alt="User Icon"
-            className="rounded-full w-48 h-48 border-1 border-gray-400"
-          />
+        <div className="relative flex items-center space-x-6 mb-6">
+          <div className="relative group">
+            <img
+              src={
+                user?.profile_image ||
+                "https://static.vecteezy.com/system/resources/thumbnails/000/439/863/small/Basic_Ui__28186_29.jpg"
+              }
+              alt="User Icon"
+              className="rounded-full w-48 h-48 border-1 border-gray-400"
+            />
+
+            <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full">
+              <label
+                htmlFor="profile_image"
+                className="text-white text-sm font-semibold cursor-pointer"
+              >
+                Change Photo
+              </label>
+              <input
+                type="file"
+                id="profile_image"
+                name="profile_image"
+                accept="image/*"
+                onChange={handleImageChange}
+                className="hidden"
+              />
+            </div>
+          </div>
+
           <div>
             <h2 className="text-xl font-semibold italic">
               {user?.first_name || "Guest first_name"}{" "}
@@ -98,27 +213,38 @@ const Profile = () => {
           </div>
         </div>
 
-        <form className="border-1 border-gray-400 p-8 rounded-xl">
+        {uploadMessage && (
+          <p className="text-sm text-gray-500 mb-4">{uploadMessage}</p>
+        )}
+
+        <form
+          className="border-1 border-gray-400 p-8 rounded-xl"
+          onSubmit={handleUpdate}
+        >
           <div className="flex flex-col space-y-4">
             <div>
-              <label htmlFor="first-name" className="block font-bold mb-1">
+              <label htmlFor="first_name" className="block font-bold mb-1">
                 First Name
               </label>
               <input
                 type="text"
-                id="first-name"
-                defaultValue={user?.first_name || ""}
+                id="first_name"
+                name="first_name"
+                value={userInput.first_name}
+                onChange={handleChange}
                 className="w-1/2 px-4 py-2 border border-gray-400 rounded-lg focus:outline-none focus:ring-1"
               />
             </div>
             <div>
-              <label htmlFor="last-name" className="block font-bold mb-1">
+              <label htmlFor="last_name" className="block font-bold mb-1">
                 Last Name
               </label>
               <input
                 type="text"
-                id="last-name"
-                defaultValue={user?.last_name || ""}
+                id="last_name"
+                name="last_name"
+                value={userInput.last_name}
+                onChange={handleChange}
                 className="w-1/2 px-4 py-2 border border-gray-400 rounded-lg focus:outline-none focus:ring-1"
               />
             </div>
@@ -129,7 +255,9 @@ const Profile = () => {
               <input
                 type="email"
                 id="email"
-                defaultValue={user?.email || ""}
+                name="email"
+                value={userInput.email}
+                onChange={handleChange}
                 className="w-1/2 px-4 py-2 border border-gray-400 rounded-lg focus:outline-none focus:ring-1"
               />
             </div>
@@ -141,11 +269,12 @@ const Profile = () => {
                 <input
                   type="tel"
                   id="phone"
-                  defaultValue={user?.phone || ""}
-                  className="w-full px-4 py-2 border border-gray-400 rounded-lg focus:outline-none focus:ring-1 focus:ring-red-400"
+                  name="phone"
+                  value={userInput.phone}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 border border-gray-400 rounded-lg focus:outline-none focus:ring-1"
                 />
               </div>
-
               <div className="flex-1">
                 <label htmlFor="gender" className="block font-bold mb-1">
                   Gender
@@ -153,8 +282,9 @@ const Profile = () => {
                 <select
                   name="gender"
                   id="gender"
-                  defaultValue={user?.gender || "Male"}
-                  className="w-full px-4 py-2 border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400"
+                  value={userInput.gender}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 border border-gray-400 rounded-lg focus:outline-none focus:ring-1"
                 >
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
