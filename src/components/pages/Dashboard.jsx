@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 import { tasksAPI, usersAPI } from "../common/http-api";
 import { Navigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCalendar, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import TaskList from "../reusable/TaskList";
 import TaskStatus from "../reusable/TaskStatus";
 import TaskCompleted from "../reusable/TaskCompleted";
+import { faCalendar } from "@fortawesome/free-regular-svg-icons";
 
 const Dashboard = () => {
   const [user, setUser] = useState(null);
@@ -77,20 +78,19 @@ const Dashboard = () => {
     return <p>Loading...</p>;
   }
 
-  const completedTasks = tasks.filter((task) => task.is_completed);
-  const notCompletedTasks = tasks.filter((task) => !task.is_completed);
-
   return (
     <>
       <div>
-        <h1 className="text-6xl font-bold">Welcome back, {user.username} 👋👋</h1>
+        <h1 className="text-6xl font-bold">
+          Welcome back, {user.username} 👋👋
+        </h1>
       </div>
       <div className="p-6">
         <div className="mx-auto">
           <div className="flex justify-between items-center mb-6">
-            <div className="flex items-center gap-3">
-              <FontAwesomeIcon icon={faCalendar} />
-              <h1 className="text-2xl text-red-400 font-bold">To-Do</h1>
+            <div className="flex items-center text-2xl">
+              <FontAwesomeIcon icon={faCalendar} className="pr-2 text-gray-400"/>
+              <h1 className="text-red-400 font-bold">To-Do</h1>
             </div>
 
             <button className="text-sm px-4 py-2 rounded-lg hover:border-none hover:cursor-pointer">
@@ -104,8 +104,8 @@ const Dashboard = () => {
             <TaskList tasks={tasks} />
 
             <div className="space-y-6 lg:col-span-2">
-                <TaskStatus tasks={tasks} />
-                <TaskCompleted tasks={tasks} />
+              <TaskStatus tasks={tasks} />
+              <TaskCompleted tasks={tasks} />
             </div>
           </div>
         </div>

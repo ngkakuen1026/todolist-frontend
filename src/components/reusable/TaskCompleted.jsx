@@ -1,10 +1,15 @@
+import { faCalendarCheck } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
-const TaskCompleted = ({tasks}) => {
+const TaskCompleted = ({ tasks }) => {
   const completedTasks = tasks.filter((task) => task.is_completed);
   return (
     <div className="bg-white shadow-md rounded-lg p-4">
-      <h2 className="text-lg font-semibold mb-4">Completed Tasks</h2>
+      <h2 className="text-xl font-semibold mb-4 text-red-400">
+        <FontAwesomeIcon icon={faCalendarCheck} className="pr-2 text-gray-400"/>
+        Completed Tasks
+      </h2>
       {completedTasks.length > 0 ? (
         completedTasks.map((task) => (
           <div key={task.task_id} className="flex items-start space-x-4 mb-4">

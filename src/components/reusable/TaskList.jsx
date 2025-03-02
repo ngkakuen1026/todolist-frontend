@@ -3,7 +3,7 @@ import TaskCard from "./TaskCard";
 
 const TaskList = ({ tasks }) => {
   return (
-    <div className="lg:col-span-2 space-y-6 border-1 rounded-lg border-gray-400 p-4">
+    <div className="lg:col-span-2 space-y-6 rounded-lg p-4">
       {tasks.map((task, index) => (
         <TaskCard
           key={index}
