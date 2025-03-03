@@ -9,11 +9,11 @@ const TaskStatus = ({ tasks }) => {
   const allTasks = tasks.length;
   const completedTasks = tasks.filter((task) => task.is_completed).length;
   const notCompletedTasks = tasks.filter((task) => !task.is_completed).length;
-  const completedTasksPercentage = (completedTasks / allTasks) * 100;
-  const notCompletedTasksPercentage = (notCompletedTasks / allTasks) * 100;
+  const completedTasksPercentage = Math.round((completedTasks / allTasks) * 100);
+  const notCompletedTasksPercentage = Math.round((notCompletedTasks / allTasks) * 100);
 
   return (
-    <div className="bg-white shadow-md rounded-lg p-4">
+    <div className="bg-white shadow-lg rounded-lg p-10">
       <h2 className="text-xl font-semibold mb-4 text-red-400">
         <FontAwesomeIcon icon={faChartBar} className="pr-2 text-gray-400" />
         Task Status

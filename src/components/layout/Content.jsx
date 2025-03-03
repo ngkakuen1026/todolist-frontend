@@ -11,6 +11,7 @@ import Register from '../pages/Register.jsx';
 import Profile from '../pages/Profile.jsx';
 import Dashboard from '../pages/Dashboard.jsx';
 import ChangePw from '../pages/ChangePw.jsx';
+import AddTask from '../pages/AddTask.jsx';
 
 const Content = () => {
   const location = useLocation();
@@ -30,6 +31,7 @@ const Content = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/profile/changepw" element={<ChangePw/>} />
+            <Route path='/add-task' element={<AddTask />} />
         </Routes>
       </main>
     </div>

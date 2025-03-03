@@ -1,4 +1,3 @@
-import React from "react";
 import { BrowserRouter as Router, useLocation } from "react-router-dom";
 import Content from "./Content";
 import Header from "../reusable/Header";
