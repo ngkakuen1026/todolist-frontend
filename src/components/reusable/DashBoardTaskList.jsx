@@ -31,7 +31,7 @@ const DashBoardTaskList = ({ tasks }) => {
       <div className="flex justify-between items-center mb-6">
         <div className="flex items-center text-2xl">
           <FontAwesomeIcon icon={faCalendar} className="pr-2 text-gray-400" />
-          <h1 className="text-red-400 font-bold">Your To-Do List</h1>
+          <h1 className="text-red-400 font-bold">To-Do</h1>
         </div>
 
         <button className="text-sm mx-4 my-2 rounded-lg hover:opacity-50 hover:border-none hover:cursor-pointer">

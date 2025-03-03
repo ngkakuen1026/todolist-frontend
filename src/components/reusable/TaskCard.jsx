@@ -1,7 +1,4 @@
-import {
-  faPenToSquare,
-  faTrashCan,
-} from "@fortawesome/free-solid-svg-icons";
+import { faPenToSquare, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const TaskCard = ({
@@ -47,7 +44,11 @@ const TaskCard = ({
       <div className="flex justify-between items-start">
         <p className="text-gray-500 text-lg mt-2">{description}</p>
         <img
-          src={ task_image == null? "https://cdn-icons-png.flaticon.com/512/4345/4345573.png" : task_image }
+          src={
+            task_image == null
+              ? "https://cdn-icons-png.flaticon.com/512/4345/4345573.png"
+              : task_image
+          }
           alt={title}
           className="w-64 h-64 object-cover rounded-lg mr-20"
         />

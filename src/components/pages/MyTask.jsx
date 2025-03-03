@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { tasksAPI } from "../common/http-api";
 import MyTaskTaskList from "../reusable/MyTaskTaskList";
@@ -7,11 +7,10 @@ import SpecificTask from "../reusable/SpecificTask";
 
 const MyTask = () => {
   const [tasks, setTasks] = useState([]);
-  const [selectedTask, setSelectedTask] = useState(null); // State to store the selected task
+  const [selectedTask, setSelectedTask] = useState(null);
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  // Fetch tasks
   useEffect(() => {
     const fetchTaskInfo = async () => {
       try {
@@ -42,14 +41,14 @@ const MyTask = () => {
     try {
       const token = localStorage.getItem("authToken");
       if (!token) throw new Error("No authentication token found");
-  
+
       const response = await axios.get(`${tasksAPI.url}/${taskId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-  
-      console.log("API Response:", response.data); 
+
+      console.log("API Response:", response.data);
       setSelectedTask(response.data.task);
     } catch (err) {
       console.error(
@@ -58,6 +57,11 @@ const MyTask = () => {
       );
       setError(err.response?.data?.message || "Failed to fetch task details");
     }
+  };
+
+  const handleTaskDeleted = (deletedTaskId) => {
+    setTasks((prevTasks) => prevTasks.filter((task) => task.task_id !== deletedTaskId));
+    setSelectedTask(null); 
   };
 
   if (error) {
@@ -84,7 +88,7 @@ const MyTask = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
             <MyTaskTaskList tasks={tasks} onTaskClick={fetchSpecificTask} />
             <div className="space-y-6 lg:col-span-6">
-              <SpecificTask task={selectedTask} />
+              <SpecificTask task={selectedTask} onTaskDeleted={handleTaskDeleted} />
             </div>
           </div>
         </div>
