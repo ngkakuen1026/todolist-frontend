@@ -149,7 +149,7 @@ const Profile = () => {
         <h1 className="text-red-500">Error: {error}</h1>
         <p onClick={() => navigate("/login")}>Login to start again</p>
       </>
-    );
+    )
   }
 
   if (!user) {

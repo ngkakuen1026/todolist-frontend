@@ -2,8 +2,10 @@ import { faPenToSquare, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios"; // Import axios for API calls
 import { tasksAPI } from "../common/http-api";
+import { useNavigate } from "react-router-dom";
 
 const SpecificTask = ({ task, onTaskDeleted }) => {
+  const navigate = useNavigate();
   const formatDate = (dateString) => {
     const date = new Date(dateString);
 
@@ -20,6 +22,10 @@ const SpecificTask = ({ task, onTaskDeleted }) => {
     });
 
     return `${formattedDate} at ${formattedTime}`;
+  };
+
+  const handleEditTask = () => {
+    navigate("/edit-task", { state: { task } });
   };
 
   const handleDeleteTask = async () => {
@@ -39,7 +45,7 @@ const SpecificTask = ({ task, onTaskDeleted }) => {
       });
 
       if (response.status === 200) {
-        alert("Task deleted successfully!"); 
+        alert("Task deleted successfully!");
         onTaskDeleted(task.task_id);
       }
     } catch (error) {
@@ -96,6 +102,7 @@ const SpecificTask = ({ task, onTaskDeleted }) => {
         <FontAwesomeIcon
           icon={faPenToSquare}
           className="text-2xl bg-blue-500 rounded-lg text-white p-2 hover:cursor-pointer hover:opacity-80"
+          onClick={handleEditTask}
         />
         <FontAwesomeIcon
           icon={faTrashCan}

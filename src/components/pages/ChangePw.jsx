@@ -108,7 +108,7 @@ const ChangePw = () => {
     return (
       <>
         <h1 className="text-red-500">Error: {error}</h1>;<p></p>
-        <p onClick={() => navigate("/login")}>Login to start again</p>
+        <p onClick={() => navigate("/login")} className="hover:opacity-50 cursor-pointer">Login to start again</p>
       </>
     );
   }
@@ -116,7 +116,8 @@ const ChangePw = () => {
   if (formError) {
     return (
       <>
-        <h1 className="text-red-500">Error: {formError}</h1>;<p></p>
+        <h1 className="text-red-500">Error: {formError}</h1><p></p>
+        <p onClick={() => navigate("/profile")} className="hover:opacity-50 cursor-pointer">Try again</p>
       </>
     );
   }

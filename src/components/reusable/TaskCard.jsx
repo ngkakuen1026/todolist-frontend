@@ -27,19 +27,9 @@ const TaskCard = ({
   };
 
   return (
-    <div className="bg-white shadow-lg rounded-lg px-4 py-6 ">
+    <div className="bg-white shadow-lg rounded-lg px-4 py-6">
       <div className="flex justify-between items-center">
         <h2 className="text-xl font-semibold">{title}</h2>
-        <div className="flex justify-between text-gray-500">
-          <FontAwesomeIcon
-            icon={faPenToSquare}
-            className="hover:cursor-pointer hover:text-red-400 pr-4"
-          />
-          <FontAwesomeIcon
-            icon={faTrashCan}
-            className="hover:cursor-pointer hover:text-red-400"
-          />
-        </div>
       </div>
       <div className="flex justify-between items-start">
         <p className="text-gray-500 text-lg mt-2">{description}</p>

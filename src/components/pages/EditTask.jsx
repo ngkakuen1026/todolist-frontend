@@ -1,19 +1,32 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom"; // Import useLocation and useNavigate
 import { tasksAPI } from "../common/http-api";
 import { InputField } from "../reusable/InputField";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage } from "@fortawesome/free-regular-svg-icons";
 
-const AddTask = () => {
+const EditTask = () => {
   const navigate = useNavigate();
+  const { state } = useLocation();
+  const { task } = state || {}; 
+
   const [userInput, setUserInput] = useState({
     title: "",
     description: "",
     is_completed: false,
   });
   const [selectedImage, setSelectedImage] = useState(null);
+
+  useEffect(() => {
+    if (task) {
+      setUserInput({
+        title: task.title || "",
+        description: task.description || "",
+        is_completed: task.is_completed || false,
+      });
+    }
+  }, [task]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,7 +42,7 @@ const AddTask = () => {
     setSelectedImage(file);
   };
 
-  const handleAdd = async (e) => {
+  const handleEdit = async (e) => {
     e.preventDefault();
 
     try {
@@ -44,43 +57,41 @@ const AddTask = () => {
         formData.append("task_image", selectedImage);
       }
 
-      const response = await axios.post(`${tasksAPI.url}`, formData, {
+      await axios.put(`${tasksAPI.url}/${task.task_id}`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",
         },
       });
 
-      console.log("New task data added:", response.data);
-      alert("New Task added");
-      setUserInput({
-        title: "",
-        description: "",
-        is_completed: "",
-      });
-      setSelectedImage(null);
+      alert("Task updated successfully!");
+      navigate("/dashboard");
     } catch (error) {
-      console.error(`Error: ${error.message}`);
-      alert(`Error: ${error.message}`);
+      console.error("Error updating task:", error);
+      alert("Failed to update the task. Please try again.");
     }
   };
 
   return (
     <div>
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-4xl font-bold">Add Task</h1>
-        <Link to="/dashboard" className="text-lg font-semibold hover:underline">
+        <h1 className="text-4xl font-bold">Edit Task</h1>
+        <button
+          onClick={() => navigate("/dashboard")}
+          className="text-lg font-semibold hover:underline"
+        >
           Go Back
-        </Link>
+        </button>
       </div>
       <div>
         <form
           action="submit"
           className="border-1 border-gray-400 p-8 rounded-xl"
-          onSubmit={handleAdd}
+          onSubmit={handleEdit}
         >
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
             <div className="lg:col-span-2">
+              {/* Title Field */}
               <div className="mb-4">
                 <label htmlFor="title" className="block font-bold mb-1">
                   Title
@@ -93,6 +104,8 @@ const AddTask = () => {
                   onChange={handleChange}
                 />
               </div>
+
+              {/* Is Completed Field */}
               <div className="mb-4">
                 <label htmlFor="is_completed" className="block font-bold mb-1">
                   Is it Completed?
@@ -122,6 +135,8 @@ const AddTask = () => {
                   </label>
                 </div>
               </div>
+
+              {/* Description Field */}
               <div className="mb-4">
                 <label htmlFor="description" className="block font-bold mb-1">
                   Task Description
@@ -136,6 +151,7 @@ const AddTask = () => {
               </div>
             </div>
 
+            {/* Image Upload Field */}
             <div className="flex items-start">
               <div className="w-full">
                 <label htmlFor="task_image" className="block font-bold mb-1">
@@ -172,9 +188,9 @@ const AddTask = () => {
           <div className="flex space-x-4 mt-4">
             <button
               type="submit"
-              className="bg-red-400 text-white px-4 py-2 rounded-lg hover:bg-red-500"
+              className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
             >
-              Create
+              Save Changes
             </button>
             <button
               type="button"
@@ -190,4 +206,4 @@ const AddTask = () => {
   );
 };
 
-export default AddTask;
+export default EditTask;
