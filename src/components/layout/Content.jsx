@@ -13,6 +13,7 @@ import Dashboard from '../pages/Dashboard.jsx';
 import ChangePw from '../pages/ChangePw.jsx';
 import AddTask from '../pages/AddTask.jsx';
 import EditTask from '../pages/EditTask.jsx';
+import SearchResult from '../pages/SearchResult.jsx';
 
 const Content = () => {
   const location = useLocation();
@@ -33,7 +34,8 @@ const Content = () => {
             <Route path="/register" element={<Register />} />
             <Route path="/profile/changepw" element={<ChangePw/>} />
             <Route path="/add-task" element={<AddTask />} />
-            <Route path="/edit-task" element={<EditTask />} />
+            <Route path="/edit-task/:task_id" element={<EditTask />} /> 
+            <Route path="/search-results" element={<SearchResult />} />
         </Routes>
       </main>
     </div>

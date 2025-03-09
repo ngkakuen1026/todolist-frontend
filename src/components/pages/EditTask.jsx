@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom"; // Import useLocation and useNavigate
+import { useNavigate, useParams } from "react-router-dom";
 import { tasksAPI } from "../common/http-api";
 import { InputField } from "../reusable/InputField";
 import axios from "axios";
@@ -7,10 +7,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage } from "@fortawesome/free-regular-svg-icons";
 
 const EditTask = () => {
+  const { task_id } = useParams();
   const navigate = useNavigate();
-  const { state } = useLocation();
-  const { task } = state || {}; 
-
+  const [task, setTask] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [userInput, setUserInput] = useState({
     title: "",
     description: "",
@@ -19,14 +19,29 @@ const EditTask = () => {
   const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
-    if (task) {
-      setUserInput({
-        title: task.title || "",
-        description: task.description || "",
-        is_completed: task.is_completed || false,
-      });
-    }
-  }, [task]);
+    const fetchTask = async () => {
+      try {
+        const token = localStorage.getItem("authToken");
+        const response = await axios.get(`${tasksAPI.url}/${task_id}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        setTask(response.data.task);
+
+        setUserInput({
+          title: response.data.task.title || "",
+          description: response.data.task.description || "",
+          is_completed: response.data.task.is_completed || false,
+        });
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching task:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchTask();
+  }, [task_id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -57,7 +72,7 @@ const EditTask = () => {
         formData.append("task_image", selectedImage);
       }
 
-      await axios.put(`${tasksAPI.url}/${task.task_id}`, formData, {
+      await axios.put(`${tasksAPI.url}/${task_id}`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",
@@ -71,6 +86,9 @@ const EditTask = () => {
       alert("Failed to update the task. Please try again.");
     }
   };
+
+  if (loading) return <p>Loading...</p>;
+  if (!task) return <p>Task not found.</p>;
 
   return (
     <div>
@@ -91,7 +109,6 @@ const EditTask = () => {
         >
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
             <div className="lg:col-span-2">
-              {/* Title Field */}
               <div className="mb-4">
                 <label htmlFor="title" className="block font-bold mb-1">
                   Title
@@ -105,7 +122,6 @@ const EditTask = () => {
                 />
               </div>
 
-              {/* Is Completed Field */}
               <div className="mb-4">
                 <label htmlFor="is_completed" className="block font-bold mb-1">
                   Is it Completed?
@@ -136,7 +152,6 @@ const EditTask = () => {
                 </div>
               </div>
 
-              {/* Description Field */}
               <div className="mb-4">
                 <label htmlFor="description" className="block font-bold mb-1">
                   Task Description
@@ -151,7 +166,6 @@ const EditTask = () => {
               </div>
             </div>
 
-            {/* Image Upload Field */}
             <div className="flex items-start">
               <div className="w-full">
                 <label htmlFor="task_image" className="block font-bold mb-1">
@@ -195,7 +209,7 @@ const EditTask = () => {
             <button
               type="button"
               className="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-400"
-              onClick={() => navigate("/dashboard")}
+              onClick={() => navigate("/my-task")}
             >
               Cancel
             </button>

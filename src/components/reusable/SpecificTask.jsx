@@ -25,15 +25,13 @@ const SpecificTask = ({ task, onTaskDeleted }) => {
   };
 
   const handleEditTask = () => {
-    navigate("/edit-task", { state: { task } });
+    navigate(`/edit-task/${task.task_id}`);
   };
 
   const handleDeleteTask = async () => {
     if (!window.confirm("Are you sure you want to delete this task?")) {
       return;
     }
-
-    console.log("Deleting task with ID:", task.task_id);
 
     try {
       const token = localStorage.getItem("authToken");
