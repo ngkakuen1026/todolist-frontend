@@ -4,12 +4,14 @@ import { useNavigate } from "react-router-dom";
 import { tasksAPI } from "../common/http-api";
 import MyTaskTaskList from "../reusable/MyTaskTaskList";
 import SpecificTask from "../reusable/SpecificTask";
+import { useTranslation } from "react-i18next";
 
 const MyTask = () => {
   const [tasks, setTasks] = useState([]);
   const [selectedTask, setSelectedTask] = useState(null);
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const [t, i18n] = useTranslation("global");
 
   useEffect(() => {
     const fetchTaskInfo = async () => {
@@ -81,7 +83,7 @@ const MyTask = () => {
   return (
     <div>
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-4xl font-bold">My Task</h1>
+        <h1 className="text-4xl font-bold">{t("myTask.heading")}</h1>
       </div>
       <div className="p-6">
         <div className="mx-auto">

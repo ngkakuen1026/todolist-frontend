@@ -4,6 +4,7 @@ import { buildStyles } from "react-circular-progressbar";
 import { CircularProgressbarWithChildren } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { useTranslation } from "react-i18next";
 
 const TaskStatus = ({ tasks }) => {
   const allTasks = tasks.length;
@@ -12,11 +13,13 @@ const TaskStatus = ({ tasks }) => {
   const completedTasksPercentage = Math.round((completedTasks / allTasks) * 100);
   const notCompletedTasksPercentage = Math.round((notCompletedTasks / allTasks) * 100);
 
+  const [t, i18n] = useTranslation("global");
+
   return (
     <div className="bg-white shadow-lg rounded-lg p-10">
       <h2 className="text-xl font-semibold mb-4 text-red-400">
         <FontAwesomeIcon icon={faChartBar} className="pr-2 text-gray-400" />
-        Task Status
+        {t("dashBoard.taskStatus.title")}
       </h2>
       <div className="flex justify-around items-center">
         <div className="text-center">
@@ -34,7 +37,7 @@ const TaskStatus = ({ tasks }) => {
           </div>
           <p className="mt-2 text-lg font-semibold">
             <span className="w-3 h-3 bg-green-500 rounded-full inline-block mr-2"></span>
-            Completed
+            {t("dashBoard.taskStatus.yes")}
           </p>
         </div>
         <div className="text-center">
@@ -52,7 +55,7 @@ const TaskStatus = ({ tasks }) => {
           </div>
           <p className="mt-2 text-lg font-semibold">
             <span className="w-3 h-3 bg-red-500 rounded-full inline-block mr-2"></span>
-            Not Completed
+            {t("dashBoard.taskStatus.no")}
           </p>
         </div>
       </div>

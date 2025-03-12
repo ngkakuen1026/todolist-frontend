@@ -3,8 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios"; // Import axios for API calls
 import { tasksAPI } from "../common/http-api";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const SpecificTask = ({ task, onTaskDeleted }) => {
+  const [t, i18n] = useTranslation("global");
   const navigate = useNavigate();
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -53,7 +55,7 @@ const SpecificTask = ({ task, onTaskDeleted }) => {
   };
 
   if (!task) {
-    return <p className="text-gray-500">Select a task to view details.</p>;
+    return <p className="text-gray-500">{t("myTask.message")}.</p>;
   }
 
   return (
@@ -74,7 +76,7 @@ const SpecificTask = ({ task, onTaskDeleted }) => {
           <div>
             <h2 className="text-4xl font-bold mb-2">{task.title}</h2>
             <p className="text-xl font-semibold">
-              Status:{" "}
+              {t("myTask.specificTask.status")}:{" "}
               <span
                 className={`${
                   task.is_completed ? "text-green-500" : "text-red-500"
@@ -84,13 +86,13 @@ const SpecificTask = ({ task, onTaskDeleted }) => {
               </span>
             </p>
             <p className="text-gray-400 text-lg italic">
-              Created at: {formatDate(task.time_created)}
+              {t("myTask.specificTask.created")}: {formatDate(task.time_created)}
             </p>
           </div>
         </div>
         <div>
           <p className="mb-2 text-xl">
-            <span className="font-semibold">Description:</span>
+            <span className="font-semibold">{t("myTask.specificTask.description")}:</span>
             <span className="text-gray-600"> {task.description}</span>
           </p>
         </div>

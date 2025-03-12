@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { usersAPI } from "../common/http-api";
+import { useTranslation } from "react-i18next";
 
 const ChangePw = () => {
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ const ChangePw = () => {
     confirmPassword: "",
   });
   const [formError, setFormError] = useState("");
+  const [t, i18n] = useTranslation("global");
 
   useEffect(() => {
     const fetchUserInfo = async () => {
@@ -108,7 +110,12 @@ const ChangePw = () => {
     return (
       <>
         <h1 className="text-red-500">Error: {error}</h1>;<p></p>
-        <p onClick={() => navigate("/login")} className="hover:opacity-50 cursor-pointer">Login to start again</p>
+        <p
+          onClick={() => navigate("/login")}
+          className="hover:opacity-50 cursor-pointer"
+        >
+          Login to start again
+        </p>
       </>
     );
   }
@@ -116,8 +123,14 @@ const ChangePw = () => {
   if (formError) {
     return (
       <>
-        <h1 className="text-red-500">Error: {formError}</h1><p></p>
-        <p onClick={() => navigate("/profile")} className="hover:opacity-50 cursor-pointer">Try again</p>
+        <h1 className="text-red-500">Error: {formError}</h1>
+        <p></p>
+        <p
+          onClick={() => navigate("/profile")}
+          className="hover:opacity-50 cursor-pointer"
+        >
+          Try again
+        </p>
       </>
     );
   }
@@ -130,7 +143,7 @@ const ChangePw = () => {
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-4xl font-bold">Account Information</h1>
         <Link to="/profile" className="text-lg font-semibold hover:underline">
-          Go Back
+          {t("profile.goBack")}
         </Link>
       </div>
 
@@ -154,7 +167,7 @@ const ChangePw = () => {
               {user?.email || "guest@example.com"}
             </p>
             <p className="text-gray-500 text-lg">
-              Registered at:{" "}
+              {t("profile.registeredAt")}:{" "}
               {user?.registration_date
                 ? formatDate(user.registration_date)
                 : "N/A"}
@@ -172,7 +185,7 @@ const ChangePw = () => {
                 htmlFor="original-password"
                 className="block font-bold mb-1"
               >
-                Original Password
+                {t("profile.changepw.originalPw")}
               </label>
               <input
                 type="password"
@@ -186,7 +199,7 @@ const ChangePw = () => {
             </div>
             <div>
               <label htmlFor="new-password" className="block font-bold mb-1">
-                New Password
+                {t("profile.changepw.newPw")}
               </label>
               <input
                 type="password"
@@ -203,7 +216,7 @@ const ChangePw = () => {
                 htmlFor="confirm-password"
                 className="block font-bold mb-1"
               >
-                Confirm Password
+                {t("profile.changepw.confirmPw")}
               </label>
               <input
                 type="password"
@@ -221,14 +234,14 @@ const ChangePw = () => {
               type="submit"
               className="bg-red-400 text-white px-4 py-2 rounded-lg hover:bg-red-600"
             >
-              Update Password
+              {t("profile.changepw.buttons.button1")}
             </button>
             <button
               type="button"
               onClick={() => navigate("/profile")}
               className="bg-red-400 text-white px-4 py-2 rounded-lg hover:bg-red-600"
             >
-              Cancel
+              {t("profile.changepw.buttons.button2")}
             </button>
           </div>
         </form>

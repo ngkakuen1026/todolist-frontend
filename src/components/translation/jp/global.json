@@ -1,0 +1,188 @@
+{
+  "login": {
+    "heading": "アカウントにログイン",
+    "heading2": "ユーザー名とパスワードを使用してログイン",
+    "inputField": {
+      "username": "ユーザー名を入力してください",
+      "password": "パスワードを入力してください",
+      "loginButton": "ログイン",
+      "or": "または"
+    },
+    "heading3": "Google、Facebook、Twitterを使用してログイン",
+    "buttons": {
+      "google": "Googleで続行",
+      "facebook": "Facebookで続行",
+      "Twitter": "Twitterで続行"
+    },
+    "heading4": "未登録ですか？",
+    "heading5": "ここをクリックして登録！",
+    "registerButton": "登録"
+  },
+  "register": {
+    "heading": "アカウントを登録",
+    "heading2": "メールアドレス、パスワードを使用してユーザー名を作成！",
+    "inputField": {
+      "firstName": "名前を入力してください",
+      "lastName": "苗字を入力してください",
+      "username": "ユーザー名を入力してください",
+      "phone": "電話番号を入力してください",
+      "gender": "性別を選択",
+      "genderOptions": {
+        "option1": "女性",
+        "option2": "男性",
+        "option3": "その他"
+      },
+      "email": "メールアドレスを入力してください",
+      "password": "パスワードを入力してください",
+      "registerButton": "登録"
+    },
+    "heading4": "既に登録済みですか？",
+    "heading5": "ログインして開始！",
+    "loginButton": "ログイン"
+  },
+  "header": {
+    "message": "今日は",
+    "message2": "現在時刻は"
+  },
+  "sideNav": {
+    "option1": "ダッシュボード",
+    "option2": "マイタスク",
+    "option3": "設定",
+    "option4": "ヘルプ",
+    "option5": "ログアウト",
+    "option6": "登録"
+  },
+  "profile": {
+    "heading": "アカウント情報",
+    "goBack": "戻る",
+    "changePhoto": "写真を変更",
+    "registeredAt": "登録日",
+    "inputField": {
+      "firstName": "名前",
+      "lastName": "苗字",
+      "email": "メールアドレス",
+      "contactNumber": "連絡先番号",
+      "gender": "性別",
+      "genderOptions": {
+        "option1": "女性",
+        "option2": "男性",
+        "option3": "その他"
+      },
+      "buttons": {
+        "button1": "情報を更新",
+        "button2": "パスワードを変更"
+      }
+    },
+    "changepw": {
+      "originalPw": "元のパスワード",
+      "newPw": "新しいパスワード",
+      "confirmPw": "パスワードを確認",
+      "buttons": {
+        "button1": "パスワードを更新",
+        "button2": "キャンセル"
+      }
+    }
+  },
+  "dashBoard": {
+    "heading": "お帰りなさい",
+    "dashBoardTaskList": {
+      "title": "やることリスト",
+      "addTask": "タスクを追加",
+      "previous": "前へ",
+      "next": "次へ",
+      "page": "ページ",
+      "of": "の"
+    },
+    "taskCard": {
+      "status": "ステータス",
+      "statusOptions": {
+        "yes": "完了",
+        "no": "未完了"
+      },
+      "createdAt": "作成日"
+    },
+    "taskStatus": {
+      "title": "タスクステータス",
+      "yes": "完了",
+      "no": "未完了"
+    },
+    "completedTask": {
+      "title": "完了したタスク",
+      "completedOn": "完了日",
+      "noTaskCompleted": "完了したタスクはまだありません"
+    }
+  },
+  "addTask": {
+    "heading": "タスクを追加",
+    "goBack": "戻る",
+    "inputField": {
+      "title": "タイトル",
+      "taskTitle": "タスクのタイトルを入力してください",
+      "completed": "完了しましたか？",
+      "completedOptions": {
+        "yes": "はい",
+        "no": "いいえ"
+      },
+      "desciprtion": "タスクの説明",
+      "taskDesciprtion": "タスクの説明を入力してください",
+      "uploadTaskImage": "タスク画像をアップロード",
+      "chooseImage": "画像を選択",
+      "buttons": {
+        "button1": "作成",
+        "button2": "キャンセル",
+        "button3": "変更を保存"
+      }
+    }
+  },
+  "editTask": {
+    "heading": "タスクを編集",
+    "goBack": "戻る",
+    "inputField": {
+      "title": "タイトル",
+      "taskTitle": "タスクのタイトルを入力してください",
+      "completed": "完了しましたか？",
+      "completedOptions": {
+        "yes": "はい",
+        "no": "いいえ"
+      },
+      "desciprtion": "タスクの説明",
+      "taskDesciprtion": "タスクの説明を入力してください",
+      "uploadTaskImage": "タスク画像をアップロード",
+      "chooseImage": "画像を選択",
+      "buttons": {
+        "button1": "変更を保存",
+        "button2": "キャンセル"
+      }
+    }
+  },
+  "myTask": {
+    "heading": "マイタスク",
+    "myTaskTaskList": {
+      "title": "やることリスト",
+      "addTask": "タスクを追加",
+      "previous": "前へ",
+      "next": "次へ",
+      "page": "ページ",
+      "of": "の"
+    },
+    "message": "詳細を表示するタスクを選択してください",
+    "specificTask": {
+      "status": "ステータス",
+      "created": "作成日",
+      "description": "説明"
+    }
+  },
+  "settings": {
+    "heading": "設定",
+    "language": "言語",
+    "languageOptions": {
+      "en": "英語",
+      "jp": "日本語",
+      "tc": "繁体字中国語",
+      "sc": "簡体字中国語"
+    }
+  },
+  "help": {
+    "heading": "ヘルプ"
+  }
+}

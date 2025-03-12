@@ -1,0 +1,188 @@
+{
+  "login": {
+    "heading": "Login your account",
+    "heading2": "Using your username and password to login",
+    "inputField": {
+      "username": "Enter your Username",
+      "password": "Enter your password",
+      "loginButton": "Login",
+      "or": "or"
+    },
+    "heading3": "Using Google, Facebook or Twitter to login",
+    "buttons": {
+      "google": "Continue with Google",
+      "facebook": "Continue with Facebook",
+      "Twitter": "Continue with Twitter"
+    },
+    "heading4": "Not Registered?",
+    "heading5": "Click here to register!",
+    "registerButton": "Register"
+  },
+  "register": {
+    "heading": "Register your account",
+    "heading2": "Using email, password, and make a username!",
+    "inputField": {
+      "firstName": "Enter your first name",
+      "lastName": "Enter yourt last name",
+      "username": "Enter your Username",
+      "phone": "Enter your phone number",
+      "gender": "Select gender",
+      "genderOptions": {
+        "option1": "Female",
+        "option2": "Male",
+        "option3": "Others"
+      },
+      "email": "Enter your email",
+      "password": "Enter your password",
+      "registerButton": "Register"
+    },
+    "heading4": "Already Registered?",
+    "heading5": "Login to start using!",
+    "loginButton": "Login"
+  },
+  "header": {
+    "message": "Today is",
+    "message2": "It is"
+  },
+  "sideNav": {
+    "option1": "Dashboard",
+    "option2": "My Task",
+    "option3": "Settings",
+    "option4": "Help",
+    "option5": "Logout",
+    "option6": "Register"
+  },
+  "profile": {
+    "heading": "Account Information",
+    "goBack": "Go Back",
+    "changePhoto": "Change Photo",
+    "registeredAt": "Registered at",
+    "inputField": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email Address",
+      "contactNumber": "Contact Number",
+      "gender": "Gender",
+      "genderOptions": {
+        "option1": "Female",
+        "option2": "Male",
+        "option3": "Others"
+      },
+      "buttons": {
+        "button1": "Update Info",
+        "button2": "Change Password"
+      }
+    },
+    "changepw": {
+      "originalPw": "Original Password",
+      "newPw": "New Password",
+      "confirmPw": "Confirm Password",
+      "buttons": {
+        "button1": "Update Password",
+        "button2": "Cancel"
+      }
+    }
+  },
+  "dashBoard": {
+    "heading": "Welcome Back",
+    "dashBoardTaskList": {
+      "title": "To-Do",
+      "addTask": "Add Task",
+      "previous": "Previous",
+      "next": "Next",
+      "page": "Page",
+      "of": "of"
+    },
+    "taskCard": {
+      "status": "Status",
+      "statusOptions": {
+        "yes": "Completed",
+        "no": "Not Comleted"
+      },
+      "createdAt": "Created at"
+    },
+    "taskStatus": {
+      "title": "Task Status",
+      "yes": "Completed",
+      "no": "Not Comleted"
+    },
+    "completedTask": {
+      "title": "Completed Tasks",
+      "completedOn": "Completed on",
+      "noTaskCompleted": "No completed tasks yet"
+    }
+  },
+  "addTask": {
+    "heading": "Add Task",
+    "goBack": "Go Back",
+    "inputField": {
+      "title": "Title",
+      "taskTitle": "Enter your task title",
+      "completed": "Is it Completed?",
+      "completedOptions": {
+        "yes": "True",
+        "no": "False"
+      },
+      "desciprtion": "Task Desciprtion",
+      "taskDesciprtion": "Enter your task desciprtion",
+      "uploadTaskImage": "Upload Task Image",
+      "chooseImage": "Choose an Image",
+      "buttons": {
+        "button1": "Create",
+        "button2": "Cancel",
+        "button3": "Save Changes"
+      }
+    }
+  },
+  "editTask": {
+    "heading": "Edit Task",
+    "goBack": "Go Back",
+    "inputField": {
+      "title": "Title",
+      "taskTitle": "Enter your task title",
+      "completed": "Is it Completed?",
+      "completedOptions": {
+        "yes": "True",
+        "no": "False"
+      },
+      "desciprtion": "Task Desciprtion",
+      "taskDesciprtion": "Enter your task desciprtion",
+      "uploadTaskImage": "Upload Task Image",
+      "chooseImage": "Choose an Image",
+      "buttons": {
+        "button1": "Save Changes",
+        "button2": "Cancel"
+      }
+    }
+  },
+  "myTask": {
+    "heading": "My Task",
+    "myTaskTaskList": {
+      "title": "Your To-Do List",
+      "addTask": "Add Task",
+      "previous": "Previous",
+      "next": "Next",
+      "page": "Page",
+      "of": "of"
+    },
+    "message": "Select a task to view details",
+    "specificTask": {
+      "status": "Status",
+      "created": "Created at",
+      "description": "Description"
+    }
+  },
+  "settings": {
+    "heading": "Settings",
+    "language": "Language",
+    "languageOptions": {
+        "en": "English",
+        "jp": "Japan",
+        "tc": "Traditional Chinese",
+        "sc": "Simplified Chinese"
+    }
+  },
+  "help": {
+    "heading": "Help"
+  }
+}

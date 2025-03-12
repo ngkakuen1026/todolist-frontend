@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { usersAPI } from "../common/http-api";
+import { useTranslation } from "react-i18next";
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -16,6 +17,8 @@ const Profile = () => {
     gender: "",
     phone: "",
   });
+  const [t, i18n] = useTranslation("global");
+  // console.log("i18n: ", i18n);
 
   useEffect(() => {
     const fetchUserInfo = async () => {
@@ -149,7 +152,7 @@ const Profile = () => {
         <h1 className="text-red-500">Error: {error}</h1>
         <p onClick={() => navigate("/login")}>Login to start again</p>
       </>
-    )
+    );
   }
 
   if (!user) {
@@ -159,9 +162,9 @@ const Profile = () => {
   return (
     <div>
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-4xl font-bold">Account Information</h1>
+        <h1 className="text-4xl font-bold">{t("profile.heading")}</h1>
         <Link to="/dashboard" className="text-lg font-semibold hover:underline">
-          Go Back
+          {t("profile.goBack")}
         </Link>
       </div>
 
@@ -182,7 +185,7 @@ const Profile = () => {
                 htmlFor="profile_image"
                 className="text-white text-sm font-semibold cursor-pointer"
               >
-                Change Photo
+                {t("profile.changePhoto")}
               </label>
               <input
                 type="file"
@@ -205,7 +208,7 @@ const Profile = () => {
               {user?.email || "guest@example.com"}
             </p>
             <p className="text-gray-500 text-lg">
-              Registered at:{" "}
+              {t("profile.registeredAt")}:{" "}
               {user?.registration_date
                 ? formatDate(user.registration_date)
                 : "N/A"}
@@ -224,7 +227,7 @@ const Profile = () => {
           <div className="flex flex-col space-y-4">
             <div>
               <label htmlFor="first_name" className="block font-bold mb-1">
-                First Name
+                {t("profile.inputField.firstName")}
               </label>
               <input
                 type="text"
@@ -237,7 +240,7 @@ const Profile = () => {
             </div>
             <div>
               <label htmlFor="last_name" className="block font-bold mb-1">
-                Last Name
+                {t("profile.inputField.lastName")}
               </label>
               <input
                 type="text"
@@ -250,7 +253,7 @@ const Profile = () => {
             </div>
             <div>
               <label htmlFor="email" className="block font-bold mb-1">
-                Email Address
+                {t("profile.inputField.email")}
               </label>
               <input
                 type="email"
@@ -264,7 +267,7 @@ const Profile = () => {
             <div className="flex items-center w-1/2 space-x-6">
               <div className="flex-1">
                 <label htmlFor="phone" className="block font-bold mb-1">
-                  Contact Number
+                  {t("profile.inputField.contactNumber")}
                 </label>
                 <input
                   type="tel"
@@ -277,7 +280,7 @@ const Profile = () => {
               </div>
               <div className="flex-1">
                 <label htmlFor="gender" className="block font-bold mb-1">
-                  Gender
+                  {t("profile.inputField.gender")}
                 </label>
                 <select
                   name="gender"
@@ -286,9 +289,15 @@ const Profile = () => {
                   onChange={handleChange}
                   className="w-full px-4 py-2 border border-gray-400 rounded-lg focus:outline-none focus:ring-1"
                 >
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                  <option value="Other">Other</option>
+                  <option value="Male">
+                    {t("profile.inputField.genderOptions.option1")}
+                  </option>
+                  <option value="Female">
+                    {t("profile.inputField.genderOptions.option2")}
+                  </option>
+                  <option value="Other">
+                    {t("profile.inputField.genderOptions.option3")}
+                  </option>
                 </select>
               </div>
             </div>
@@ -299,14 +308,14 @@ const Profile = () => {
               type="submit"
               className="bg-red-400 text-white px-4 py-2 rounded-lg hover:bg-red-600"
             >
-              Update Info
+              {t("profile.inputField.buttons.button1")}
             </button>
             <button
               type="button"
               onClick={() => navigate("/profile/changepw")}
               className="bg-red-400 text-white px-4 py-2 rounded-lg hover:bg-red-600"
             >
-              Change Password
+              {t("profile.inputField.buttons.button2")}
             </button>
           </div>
         </form>

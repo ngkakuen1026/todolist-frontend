@@ -4,12 +4,15 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { tasksAPI } from "../common/http-api";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const shouldShowSearchInput = location.pathname == "/my-task" || location.pathname == "/search-results";
+  const shouldShowSearchInput =
+    location.pathname == "/my-task" || location.pathname == "/search-results";
   const [userInput, setUserInput] = useState();
+  const [t, i18n] = useTranslation("global");
 
   const getCurrentWeekDay = () => {
     const weekday = [
@@ -83,19 +86,19 @@ const Header = () => {
 
       <div className="w-1/3 flex flex-col items-end">
         <div className="text-xl">
-          Today is{" "}
+          {t("header.message")}{" "}
           <span className="text-cyan-500">
             {new Date().toLocaleDateString()}
           </span>
           ,
         </div>
         <div className="text-lg">
-          It is{" "}
+          {t("header.message2")}{" "}
           <span className="font-bold text-black">{getCurrentWeekDay()}</span>😊!
         </div>
       </div>
     </header>
   );
-}
+};
 
 export default Header;

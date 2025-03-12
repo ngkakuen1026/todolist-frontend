@@ -4,8 +4,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faCalendar } from "@fortawesome/free-regular-svg-icons";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const MyTaskTaskList = ({ tasks, onTaskClick }) => {
+  const [t, i18n] = useTranslation("global");
   const [currentPage, setCurrentPage] = useState(1);
   const tasksPerPage = 2;
 
@@ -31,12 +33,15 @@ const MyTaskTaskList = ({ tasks, onTaskClick }) => {
       <div className="flex justify-between items-center mb-6">
         <div className="flex items-center text-2xl">
           <FontAwesomeIcon icon={faCalendar} className="pr-2 text-gray-400" />
-          <h1 className="text-red-400 font-bold">Your To-Do List</h1>
+          <h1 className="text-red-400 font-bold">
+            {t("myTask.myTaskTaskList.title")}
+          </h1>
         </div>
 
         <button className="text-sm mx-4 my-2 rounded-lg hover:opacity-50 hover:border-none hover:cursor-pointer">
           <Link to="/add-task">
-            <FontAwesomeIcon icon={faPlus} /> Add Task
+            <FontAwesomeIcon icon={faPlus} />{" "}
+            {t("myTask.myTaskTaskList.addTask")}
           </Link>
         </button>
       </div>
@@ -70,10 +75,11 @@ const MyTaskTaskList = ({ tasks, onTaskClick }) => {
               : "bg-red-400 text-white hover:bg-red-600"
           }`}
         >
-          Previous
+          {t("myTask.myTaskTaskList.previous")}
         </button>
         <p className="text-gray-600">
-          Page {currentPage} of {totalPages}
+          {t("myTask.myTaskTaskList.page")} {currentPage}{" "}
+          {t("myTask.myTaskTaskList.of")} {totalPages}
         </p>
         <button
           onClick={handleNextPage}
@@ -84,7 +90,7 @@ const MyTaskTaskList = ({ tasks, onTaskClick }) => {
               : "bg-red-400 text-white hover:bg-red-600"
           }`}
         >
-          Next
+          {t("myTask.myTaskTaskList.next")}
         </button>
       </div>
     </div>

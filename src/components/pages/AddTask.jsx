@@ -5,6 +5,7 @@ import { InputField } from "../reusable/InputField";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage } from "@fortawesome/free-regular-svg-icons";
+import { useTranslation } from "react-i18next";
 
 const AddTask = () => {
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ const AddTask = () => {
     is_completed: false,
   });
   const [selectedImage, setSelectedImage] = useState(null);
+  const [t, i18n] = useTranslation("global");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -68,9 +70,9 @@ const AddTask = () => {
   return (
     <div>
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-4xl font-bold">Add Task</h1>
+        <h1 className="text-4xl font-bold">{t("addTask.heading")}</h1>
         <Link to="/dashboard" className="text-lg font-semibold hover:underline">
-          Go Back
+          {t("addTask.goBack")}
         </Link>
       </div>
       <div>
@@ -83,19 +85,19 @@ const AddTask = () => {
             <div className="lg:col-span-2">
               <div className="mb-4">
                 <label htmlFor="title" className="block font-bold mb-1">
-                  Title
+                  {t("addTask.inputField.title")}
                 </label>
                 <InputField
                   type="text"
                   name="title"
-                  placeholder="Enter your task title"
+                  placeholder={t("addTask.inputField.taskTitle")}
                   value={userInput.title}
                   onChange={handleChange}
                 />
               </div>
               <div className="mb-4">
                 <label htmlFor="is_completed" className="block font-bold mb-1">
-                  Is it Completed?
+                  {t("addTask.inputField.completed")}
                 </label>
                 <div className="flex items-center space-x-6">
                   <label className="flex items-center">
@@ -107,7 +109,7 @@ const AddTask = () => {
                       onChange={handleChange}
                       className="mr-2"
                     />
-                    True
+                    {t("addTask.inputField.completedOptions.yes")}
                   </label>
                   <label className="flex items-center">
                     <input
@@ -118,17 +120,17 @@ const AddTask = () => {
                       onChange={handleChange}
                       className="mr-2"
                     />
-                    False
+                    {t("addTask.inputField.completedOptions.no")}
                   </label>
                 </div>
               </div>
               <div className="mb-4">
                 <label htmlFor="description" className="block font-bold mb-1">
-                  Task Description
+                  {t("addTask.inputField.desciprtion")}
                 </label>
                 <textarea
                   name="description"
-                  placeholder="Enter your task description"
+                  placeholder={t("addTask.inputField.taskDesciprtion")}
                   value={userInput.description}
                   onChange={handleChange}
                   className="w-full px-4 py-2 border border-gray-400 rounded-lg focus:outline-none focus:ring-1 h-64"
@@ -139,7 +141,7 @@ const AddTask = () => {
             <div className="flex items-start">
               <div className="w-full">
                 <label htmlFor="task_image" className="block font-bold mb-1">
-                  Upload Task Image
+                  {t("addTask.inputField.uploadTaskImage")}
                 </label>
                 <div className="relative">
                   <label
@@ -153,7 +155,7 @@ const AddTask = () => {
                     <span>
                       {selectedImage
                         ? selectedImage.name
-                        : "Choose an image..."}
+                        : t("addTask.inputField.uploadTaskImage")}
                     </span>
                   </label>
                   <input
@@ -174,14 +176,14 @@ const AddTask = () => {
               type="submit"
               className="bg-red-400 text-white px-4 py-2 rounded-lg hover:bg-red-500"
             >
-              Create
+              {t("addTask.inputField.buttons.button1")}
             </button>
             <button
               type="button"
               className="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-400"
               onClick={() => navigate("/dashboard")}
             >
-              Cancel
+              {t("addTask.inputField.buttons.button2")}
             </button>
           </div>
         </form>

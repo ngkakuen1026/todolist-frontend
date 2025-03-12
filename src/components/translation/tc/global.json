@@ -1,0 +1,188 @@
+{
+  "login": {
+    "heading": "登入您的帳戶",
+    "heading2": "使用您的用戶名和密碼登入",
+    "inputField": {
+      "username": "輸入您的用戶名",
+      "password": "輸入您的密碼",
+      "loginButton": "登入",
+      "or": "或"
+    },
+    "heading3": "使用 Google、Facebook 或 Twitter 登入",
+    "buttons": {
+      "google": "繼續使用 Google",
+      "facebook": "繼續使用 Facebook",
+      "Twitter": "繼續使用 Twitter"
+    },
+    "heading4": "還沒註冊？",
+    "heading5": "點擊此處註冊！",
+    "registerButton": "註冊"
+  },
+  "register": {
+    "heading": "註冊您的帳戶",
+    "heading2": "使用電子郵件、密碼並創建用戶名！",
+    "inputField": {
+      "firstName": "輸入您的名字",
+      "lastName": "輸入您的姓氏",
+      "username": "輸入您的用戶名",
+      "phone": "輸入您的電話號碼",
+      "gender": "選擇性別",
+      "genderOptions": {
+        "option1": "女性",
+        "option2": "男性",
+        "option3": "其他"
+      },
+      "email": "輸入您的電子郵件",
+      "password": "輸入您的密碼",
+      "registerButton": "註冊"
+    },
+    "heading4": "已註冊？",
+    "heading5": "登入以開始使用！",
+    "loginButton": "登入"
+  },
+  "header": {
+    "message": "今天是",
+    "message2": "現在是"
+  },
+  "sideNav": {
+    "option1": "儀表板",
+    "option2": "我的任務",
+    "option3": "設定",
+    "option4": "幫助",
+    "option5": "登出",
+    "option6": "註冊"
+  },
+  "profile": {
+    "heading": "帳戶資訊",
+    "goBack": "返回",
+    "changePhoto": "更換照片",
+    "registeredAt": "註冊日期",
+    "inputField": {
+      "firstName": "名字",
+      "lastName": "姓氏",
+      "email": "電子郵件地址",
+      "contactNumber": "聯絡電話",
+      "gender": "性別",
+      "genderOptions": {
+        "option1": "女性",
+        "option2": "男性",
+        "option3": "其他"
+      },
+      "buttons": {
+        "button1": "更新資訊",
+        "button2": "更改密碼"
+      }
+    },
+    "changepw": {
+      "originalPw": "原密碼",
+      "newPw": "新密碼",
+      "confirmPw": "確認密碼",
+      "buttons": {
+        "button1": "更新密碼",
+        "button2": "取消"
+      }
+    }
+  },
+  "dashBoard": {
+    "heading": "歡迎回來",
+    "dashBoardTaskList": {
+      "title": "待辦事項",
+      "addTask": "新增任務",
+      "previous": "上一頁",
+      "next": "下一頁",
+      "page": "頁數",
+      "of": "總頁數"
+    },
+    "taskCard": {
+      "status": "狀態",
+      "statusOptions": {
+        "yes": "已完成",
+        "no": "未完成"
+      },
+      "createdAt": "建立於"
+    },
+    "taskStatus": {
+      "title": "任務狀態",
+      "yes": "已完成",
+      "no": "未完成"
+    },
+    "completedTask": {
+      "title": "已完成的任務",
+      "completedOn": "完成日期",
+      "noTaskCompleted": "目前無已完成任務"
+    }
+  },
+  "addTask": {
+    "heading": "新增任務",
+    "goBack": "返回",
+    "inputField": {
+      "title": "標題",
+      "taskTitle": "輸入任務標題",
+      "completed": "是否完成？",
+      "completedOptions": {
+        "yes": "是",
+        "no": "否"
+      },
+      "desciprtion": "任務描述",
+      "taskDesciprtion": "輸入任務描述",
+      "uploadTaskImage": "上傳任務圖片",
+      "chooseImage": "選擇圖片",
+      "buttons": {
+        "button1": "建立",
+        "button2": "取消",
+        "button3": "儲存變更"
+      }
+    }
+  },
+  "editTask": {
+    "heading": "編輯任務",
+    "goBack": "返回",
+    "inputField": {
+      "title": "標題",
+      "taskTitle": "輸入任務標題",
+      "completed": "是否完成？",
+      "completedOptions": {
+        "yes": "是",
+        "no": "否"
+      },
+      "desciprtion": "任務描述",
+      "taskDesciprtion": "輸入任務描述",
+      "uploadTaskImage": "上傳任務圖片",
+      "chooseImage": "選擇圖片",
+      "buttons": {
+        "button1": "儲存變更",
+        "button2": "取消"
+      }
+    }
+  },
+  "myTask": {
+    "heading": "我的任務",
+    "myTaskTaskList": {
+      "title": "您的待辦清單",
+      "addTask": "新增任務",
+      "previous": "上一頁",
+      "next": "下一頁",
+      "page": "頁數",
+      "of": "總頁數"
+    },
+    "message": "選擇一個任務來查看詳情",
+    "specificTask": {
+      "status": "狀態",
+      "created": "建立於",
+      "description": "描述"
+    }
+  },
+  "settings": {
+    "heading": "設定",
+    "language": "語言",
+    "languageOptions": {
+      "en": "英文",
+      "jp": "日文",
+      "tc": "繁體中文",
+      "sc": "簡體中文"
+    }
+  },
+  "help": {
+    "heading": "幫助"
+  }
+}

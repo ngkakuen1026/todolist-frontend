@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash, faUser } from "@fortawesome/free-solid-svg-icons";
 import { authAPI } from "../common/http-api";
 import { AuthInputField } from "../reusable/AuthInputField";
+import { useTranslation } from "react-i18next";
 
 const Register = () => {
   const [userInput, setUserInput] = useState({
@@ -20,7 +21,8 @@ const Register = () => {
   const [successMessage, setSuccessMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  //Update input change
+  const [t, i18n] = useTranslation("global");
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserInput({
@@ -99,10 +101,10 @@ const Register = () => {
     <div className="w-full h-screen flex">
       <div className="w-1/3 flex flex-col justify-center items-center bg-gradient-to-br from-sky-600 to-sky-400">
         <h2 className="text-6xl text-white font-bold text-center mb-6">
-          Already Registered?
+          {t("register.heading4")}
         </h2>
         <p className="text-2xl text-white text-center mb-6">
-          Login to start using!
+          {t("register.heading5")}
         </p>
         <div className="flex items-center justify-center">
           <a href="/login">
@@ -110,7 +112,7 @@ const Register = () => {
               className="w-64 bg-white text-black font-bold py-4 px-8 rounded-full hover:bg-gray-200 flex items-center justify-center
               transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-110 duration-150"
             >
-              Login
+              {t("register.loginButton")}
               <FontAwesomeIcon icon={faUser} className="pl-1" />
             </button>
           </a>
@@ -119,10 +121,10 @@ const Register = () => {
 
       <div className="w-2/3 flex flex-col justify-center">
         <h1 className="text-6xl font-bold text-gray-800 mb-6 text-center">
-          Register your account
+          {t("register.heading")}
         </h1>
         <h1 className="text-2xl italic text-gray-400 mb-6 text-center">
-          Using email, password, and make a username!
+          {t("register.heading2")}
         </h1>
 
         {errorMessage && (
@@ -141,7 +143,7 @@ const Register = () => {
                 <AuthInputField
                   type="text"
                   name="first_name"
-                  placeholder="Enter your first name"
+                  placeholder={t("register.inputField.firstName")}
                   value={userInput.first_name}
                   onChange={handleChange}
                 />
@@ -152,7 +154,7 @@ const Register = () => {
                 <AuthInputField
                   type="text"
                   name="last_name"
-                  placeholder="Enter your last name"
+                  placeholder={t("register.inputField.lastName")}
                   value={userInput.last_name}
                   onChange={handleChange}
                 />
@@ -166,7 +168,7 @@ const Register = () => {
                 <AuthInputField
                   type="text"
                   name="username"
-                  placeholder="Enter your Username"
+                  placeholder={t("register.inputField.username")}
                   value={userInput.username}
                   onChange={handleChange}
                 />
@@ -177,7 +179,7 @@ const Register = () => {
                 <AuthInputField
                   type="text"
                   name="phone"
-                  placeholder="Enter your phone number"
+                  placeholder={t("register.inputField.phone")}
                   value={userInput.phone}
                   onChange={handleChange}
                 />
@@ -191,10 +193,10 @@ const Register = () => {
                   value={userInput.gender}
                   onChange={handleChange}
                 >
-                  <option value="">Select gender</option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                  <option value="Other">Other</option>
+                  <option value="">{t("register.inputField.gender")}</option>
+                  <option value="Male">{t("register.inputField.genderOptions.option1")}</option>
+                  <option value="Female">{t("register.inputField.genderOptions.option2")}</option>
+                  <option value="Other">{t("register.inputField.genderOptions.option3")}</option>
                 </select>
               </div>
             </div>
@@ -204,7 +206,7 @@ const Register = () => {
             <AuthInputField
               type="email"
               name="email"
-              placeholder="Enter your email"
+              placeholder={t("register.inputField.email")}
               value={userInput.email}
               onChange={handleChange}
             />
@@ -215,7 +217,7 @@ const Register = () => {
               <AuthInputField
                 type={showPassword ? "text" : "password"}
                 name="password"
-                placeholder="Enter your password"
+                placeholder={t("register.inputField.password")}
                 value={userInput.password}
                 onChange={handleChange}
               />
@@ -233,7 +235,6 @@ const Register = () => {
                 />
               )}
             </div>
-            <div></div>
           </div>
 
           <div className="flex justify-center">
@@ -246,7 +247,7 @@ const Register = () => {
               type="submit"
               disabled={isSubmitting}
             >
-              Register
+              {t("register.inputField.registerButton")}
               <FontAwesomeIcon icon={faUser} className="pl-1" />
             </button>
           </div>

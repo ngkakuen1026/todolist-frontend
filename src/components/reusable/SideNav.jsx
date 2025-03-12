@@ -5,18 +5,20 @@ import {
   faClipboard,
   faClipboardCheck,
   faGear,
-  faListCheck,
   faArrowRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
 import { usersAPI } from "../common/http-api";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 const SideNav = () => {
 
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [error, setError] = useState("");
+
+  const [t, i18n] = useTranslation("global")
   
   useEffect(() => {
     const fetchUserInfo = async () => {
@@ -46,7 +48,7 @@ const SideNav = () => {
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem("authToken"); // Remove the token
+    localStorage.removeItem("authToken");
     navigate("/login");
   };
 
@@ -81,7 +83,7 @@ const SideNav = () => {
             className="block py-2 px-4 rounded hover:bg-white hover:text-red-400"
           >
             <FontAwesomeIcon icon={faClipboard} className="pr-5 h-6 w-6" />
-            Dashboard
+            {t("sideNav.option1")}
           </Link>
         </li>
         <li>
@@ -90,16 +92,7 @@ const SideNav = () => {
             className="block py-2 px-4 rounded hover:bg-white hover:text-red-400"
           >
             <FontAwesomeIcon icon={faClipboardCheck} className="pr-5 h-6 w-6" />
-            My Task
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/task-categories"
-            className="block py-2 px-4 rounded hover:bg-white hover:text-red-400"
-          >
-            <FontAwesomeIcon icon={faListCheck} className="pr-5 h-6 w-6" />
-            Task Categories
+            {t("sideNav.option2")}
           </Link>
         </li>
         <li>
@@ -108,7 +101,7 @@ const SideNav = () => {
             className="block py-2 px-4 rounded hover:bg-white hover:text-red-400"
           >
             <FontAwesomeIcon icon={faGear} className="pr-5 h-6 w-6" />
-            Settings
+            {t("sideNav.option3")}
           </Link>
         </li>
         <li>
@@ -117,7 +110,7 @@ const SideNav = () => {
             className="block py-2 px-4 rounded hover:bg-white hover:text-red-400"
           >
             <FontAwesomeIcon icon={faCircleQuestion} className="pr-5 h-6 w-6" />
-            Help
+            {t("sideNav.option4")}
           </Link>
         </li>
         {user ? (
@@ -129,7 +122,7 @@ const SideNav = () => {
               icon={faArrowRightFromBracket}
               className="pr-5 h-6 w-6"
             />
-            Logout
+            {t("sideNav.option5")}
           </button>
         ) : (
           <Link
@@ -140,7 +133,7 @@ const SideNav = () => {
               icon={faArrowRightFromBracket}
               className="pr-5 h-6 w-6"
             />
-            Register
+            {t("sideNav.option6")}
           </Link>
         )}
       </ul>

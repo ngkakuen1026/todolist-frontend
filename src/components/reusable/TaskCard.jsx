@@ -1,5 +1,4 @@
-import { faPenToSquare, faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useTranslation } from "react-i18next";
 
 const TaskCard = ({
   title,
@@ -8,6 +7,7 @@ const TaskCard = ({
   isCompleted,
   task_image,
 }) => {
+  const [t, i18n] = useTranslation("global");
   const formatDate = (dateString) => {
     const date = new Date(dateString);
 
@@ -46,17 +46,19 @@ const TaskCard = ({
 
       <div className="flex justify-between items-center mt-4">
         <p className="text-sm text-gray-500">
-          Status:{" "}
+          {t("dashBoard.taskCard.status")}:{" "}
           <span
             className={`font-medium ${
               isCompleted ? "text-green-500" : "text-red-500"
             }`}
           >
-            {isCompleted ? "Completed" : "Not Completed"}
+            {isCompleted
+              ? t("dashBoard.taskCard.statusOptions.yes")
+              : t("dashBoard.taskCard.statusOptions.no")}
           </span>
         </p>
         <span className="text-sm text-gray-400">
-          Created at: {formatDate(timeCreated)}
+          {t("dashBoard.taskCard.createdAt")}: {formatDate(timeCreated)}
         </span>
       </div>
     </div>

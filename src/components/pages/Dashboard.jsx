@@ -5,12 +5,14 @@ import { useNavigate } from "react-router-dom";
 import DashBoardTaskList from "../reusable/DashBoardTaskList";
 import TaskStatus from "../reusable/TaskStatus";
 import TaskCompleted from "../reusable/TaskCompleted";
+import { useTranslation } from "react-i18next";
 
 const Dashboard = () => {
   const [user, setUser] = useState(null);
   const [tasks, setTasks] = useState([]);
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const [t, i18n] = useTranslation("global");
 
   // Fetch user info
   useEffect(() => {
@@ -89,7 +91,7 @@ const Dashboard = () => {
     <>
       <div>
         <h1 className="text-6xl font-bold">
-          Welcome back, {user.username} 👋👋
+          {t("dashBoard.heading")}, {user.username} 👋👋
         </h1>
       </div>
       <div className="p-6">

@@ -3,7 +3,6 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import SideNav from '../reusable/SideNav.jsx';
 
 import MyTask from '../pages/MyTask.jsx';
-import TaskCategories from '../pages/TaskCategories.jsx';
 import Settings from '../pages/Settings.jsx';
 import Help from '../pages/Help.jsx';
 import Login from '../pages/Login.jsx';
@@ -27,7 +26,6 @@ const Content = () => {
             <Route path="/profile" element={<Profile/>} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/my-task" element={<MyTask />} />
-            <Route path="/task-categories" element={<TaskCategories />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/help" element={<Help />} />
             <Route path="/login" element={<Login />} />
