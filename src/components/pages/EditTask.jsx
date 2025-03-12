@@ -19,6 +19,7 @@ const EditTask = () => {
   });
   const [selectedImage, setSelectedImage] = useState(null);
   const [t, i18n] = useTranslation("global");
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     const fetchTask = async () => {
@@ -45,6 +46,23 @@ const EditTask = () => {
     fetchTask();
   }, [task_id]);
 
+  const validateInput = () => {
+    if (!userInput.title.trim()) {
+      setErrorMessage(t("addTask.inputField.errors.titleRequired"));
+      return false;
+    }
+    if (!userInput.description.trim()) {
+      setErrorMessage(t("addTask.inputField.errors.descriptionRequired"));
+      return false;
+    }
+    if (userInput.is_completed === null) {
+      setErrorMessage(t("addTask.inputField.errors.isCompletedRequired"));
+      return false;
+    }
+    setErrorMessage("");
+    return true;
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -61,6 +79,8 @@ const EditTask = () => {
 
   const handleEdit = async (e) => {
     e.preventDefault();
+
+    if (!validateInput()) return;
 
     try {
       const token = localStorage.getItem("authToken");
@@ -106,6 +126,10 @@ const EditTask = () => {
           className="border-1 border-gray-400 p-8 rounded-xl"
           onSubmit={handleEdit}
         >
+          {errorMessage && (
+            <p className="text-red-500 text-sm mb-4">{errorMessage}</p>
+          )}
+
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
             <div className="lg:col-span-2">
               <div className="mb-4">
@@ -146,7 +170,7 @@ const EditTask = () => {
                       onChange={handleChange}
                       className="mr-2"
                     />
-                   {t("editTask.inputField.completedOptions.no")}
+                    {t("editTask.inputField.completedOptions.no")}
                   </label>
                 </div>
               </div>

@@ -12,10 +12,11 @@ const AddTask = () => {
   const [userInput, setUserInput] = useState({
     title: "",
     description: "",
-    is_completed: false,
+    is_completed: null, // Set to `null` to ensure validation
   });
   const [selectedImage, setSelectedImage] = useState(null);
   const [t, i18n] = useTranslation("global");
+  const [errorMessage, setErrorMessage] = useState(""); // State for error message
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -31,8 +32,28 @@ const AddTask = () => {
     setSelectedImage(file);
   };
 
+  // Validation function
+  const validateInput = () => {
+    if (!userInput.title.trim()) {
+      setErrorMessage(t("addTask.inputField.errors.titleRequired"));
+      return false;
+    }
+    if (!userInput.description.trim()) {
+      setErrorMessage(t("addTask.inputField.errors.descriptionRequired")); 
+      return false;
+    }
+    if (userInput.is_completed === null) {
+      setErrorMessage(t("addTask.inputField.errors.isCompletedRequired")); 
+      return false;
+    }
+    setErrorMessage(""); 
+    return true;
+  };
+
   const handleAdd = async (e) => {
     e.preventDefault();
+
+    if (!validateInput()) return; 
 
     try {
       const token = localStorage.getItem("authToken");
@@ -58,9 +79,10 @@ const AddTask = () => {
       setUserInput({
         title: "",
         description: "",
-        is_completed: "",
+        is_completed: null,
       });
       setSelectedImage(null);
+      setErrorMessage("");
     } catch (error) {
       console.error(`Error: ${error.message}`);
       alert(`Error: ${error.message}`);
@@ -81,6 +103,10 @@ const AddTask = () => {
           className="border-1 border-gray-400 p-8 rounded-xl"
           onSubmit={handleAdd}
         >
+          {errorMessage && (
+            <p className="text-red-500 text-sm mb-4">{errorMessage}</p>
+          )}
+
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
             <div className="lg:col-span-2">
               <div className="mb-4">

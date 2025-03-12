@@ -131,6 +131,11 @@
         "button1": "Create",
         "button2": "Cancel",
         "button3": "Save Changes"
+      },
+      "errors": {
+        "titleRequired": "Title Field is required.",
+        "descriptionRequired": "Desciprtion Field is required.",
+        "isCompletedRequired": "Please select one of the option."
       }
     }
   },
@@ -176,10 +181,10 @@
     "heading": "Settings",
     "language": "Language",
     "languageOptions": {
-        "en": "English",
-        "jp": "Japan",
-        "tc": "Traditional Chinese",
-        "sc": "Simplified Chinese"
+      "en": "English",
+      "jp": "Japan",
+      "tc": "Traditional Chinese",
+      "sc": "Simplified Chinese"
     }
   },
   "help": {
