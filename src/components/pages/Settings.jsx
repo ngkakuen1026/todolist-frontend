@@ -25,7 +25,7 @@ const Settings = () => {
           <select
             name="language"
             id="language"
-            className="w-1/4 px-4 py-2 border border-gray-400 rounded-lg focus:outline-none focus:ring-1"
+            className="w-1/6 px-4 py-2 border border-gray-400 rounded-lg focus:outline-none focus:ring-1"
             onChange={handleChangeLanguage}
             value={i18n.language}
           >

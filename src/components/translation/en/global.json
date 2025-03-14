@@ -42,7 +42,10 @@
   },
   "header": {
     "message": "Today is",
-    "message2": "It is"
+    "message2": "It is",
+    "searchField": {
+      "placeHolder": "Search your task here..."
+    }
   },
   "sideNav": {
     "option1": "Dashboard",
@@ -157,6 +160,11 @@
       "buttons": {
         "button1": "Save Changes",
         "button2": "Cancel"
+      },
+      "errors": {
+        "titleRequired": "Title Field is required.",
+        "descriptionRequired": "Desciprtion Field is required.",
+        "isCompletedRequired": "Please select one of the option."
       }
     }
   },

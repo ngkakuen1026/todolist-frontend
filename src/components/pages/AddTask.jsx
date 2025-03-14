@@ -12,11 +12,11 @@ const AddTask = () => {
   const [userInput, setUserInput] = useState({
     title: "",
     description: "",
-    is_completed: null, // Set to `null` to ensure validation
+    is_completed: null,
   });
   const [selectedImage, setSelectedImage] = useState(null);
   const [t, i18n] = useTranslation("global");
-  const [errorMessage, setErrorMessage] = useState(""); // State for error message
+  const [errorMessage, setErrorMessage] = useState(""); 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,7 +32,6 @@ const AddTask = () => {
     setSelectedImage(file);
   };
 
-  // Validation function
   const validateInput = () => {
     if (!userInput.title.trim()) {
       setErrorMessage(t("addTask.inputField.errors.titleRequired"));

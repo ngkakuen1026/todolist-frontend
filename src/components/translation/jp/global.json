@@ -42,7 +42,10 @@
   },
   "header": {
     "message": "今日は",
-    "message2": "現在時刻は"
+    "message2": "現在時刻は",
+    "searchField": {
+      "placeHolder": "ここでタスクを検索してください..."
+    }
   },
   "sideNav": {
     "option1": "ダッシュボード",
@@ -131,6 +134,11 @@
         "button1": "作成",
         "button2": "キャンセル",
         "button3": "変更を保存"
+      },
+      "errors": {
+        "titleRequired": "タイトルは必須です。",
+        "descriptionRequired": "説明は必須です。",
+        "isCompletedRequired": "いずれかのオプションを選択してください。"
       }
     }
   },
@@ -152,6 +160,11 @@
       "buttons": {
         "button1": "変更を保存",
         "button2": "キャンセル"
+      },
+      "errors": {
+        "titleRequired": "タイトルは必須です。",
+        "descriptionRequired": "説明は必須です。",
+        "isCompletedRequired": "いずれかのオプションを選択してください。"
       }
     }
   },

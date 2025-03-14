@@ -42,7 +42,10 @@
   },
   "header": {
     "message": "今天是",
-    "message2": "現在是"
+    "message2": "現在是",
+    "searchField": {
+      "placeHolder": "在此搜尋您的任務..."
+    }
   },
   "sideNav": {
     "option1": "儀表板",
@@ -131,6 +134,11 @@
         "button1": "建立",
         "button2": "取消",
         "button3": "儲存變更"
+      },
+      "errors": {
+        "titleRequired": "標題欄位為必填。",
+        "descriptionRequired": "描述欄位為必填。",
+        "isCompletedRequired": "請選擇一個選項。"
       }
     }
   },
@@ -152,6 +160,11 @@
       "buttons": {
         "button1": "儲存變更",
         "button2": "取消"
+      },
+      "errors": {
+        "titleRequired": "標題欄位為必填。",
+        "descriptionRequired": "描述欄位為必填。",
+        "isCompletedRequired": "請選擇一個選項。"
       }
     }
   },

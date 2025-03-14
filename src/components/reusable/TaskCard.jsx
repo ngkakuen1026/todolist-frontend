@@ -32,7 +32,9 @@ const TaskCard = ({
         <h2 className="text-xl font-semibold">{title}</h2>
       </div>
       <div className="flex justify-between items-start">
-        <p className="text-gray-500 text-lg mt-2">{description}</p>
+        <p className="text-gray-500 text-lg mt-2 break-words whitespace-normal max-w-md">
+          {description}
+        </p>
         <img
           src={
             task_image == null

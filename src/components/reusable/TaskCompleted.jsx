@@ -27,7 +27,7 @@ const TaskCompleted = ({ tasks }) => {
             />
             <div>
               <h3 className="font-medium">{task.title}</h3>
-              <p className="text-sm text-gray-500">{task.description}</p>
+              <p className="text-sm text-gray-500 break-words whitespace-normal max-w-xl">{task.description}</p>
               <p className="text-xs text-gray-400 mt-1">
                 {t("dashBoard.completedTask.completedOn")}{" "}
                 {new Date(task.time_created).toLocaleDateString()}

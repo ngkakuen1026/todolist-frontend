@@ -48,15 +48,15 @@ const EditTask = () => {
 
   const validateInput = () => {
     if (!userInput.title.trim()) {
-      setErrorMessage(t("addTask.inputField.errors.titleRequired"));
+      setErrorMessage(t("editTask.inputField.errors.titleRequired"));
       return false;
     }
     if (!userInput.description.trim()) {
-      setErrorMessage(t("addTask.inputField.errors.descriptionRequired"));
+      setErrorMessage(t("editTask.inputField.errors.descriptionRequired"));
       return false;
     }
     if (userInput.is_completed === null) {
-      setErrorMessage(t("addTask.inputField.errors.isCompletedRequired"));
+      setErrorMessage(t("editTask.inputField.errors.isCompletedRequired"));
       return false;
     }
     setErrorMessage("");
